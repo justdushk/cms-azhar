@@ -18,9 +18,16 @@ interface HeaderProps {
   setSystemLang: (lang: "ru" | "kz") => void;
   contentLang: "ru" | "kz";
   setContentLang: (lang: "ru" | "kz") => void;
+  onLogout: () => void;
 }
 
-export default function Header({ systemLang, setSystemLang, contentLang, setContentLang }: HeaderProps) {
+export default function Header({ 
+  systemLang, 
+  setSystemLang, 
+  contentLang, 
+  setContentLang,
+  onLogout 
+}: HeaderProps) {
   const t = translations[systemLang];
 
   return (
@@ -63,7 +70,7 @@ export default function Header({ systemLang, setSystemLang, contentLang, setCont
           </div>
         </div>
 
-        <button className="logout-btn">{t.logout}</button>
+        <button className="logout-btn" onClick={onLogout}>{t.logout}</button>
       </div>
     </header>
   );

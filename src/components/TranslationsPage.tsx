@@ -91,7 +91,6 @@ export default function TranslationsPage({ contentLang, systemLang }: Translatio
     t.key.toLowerCase().includes(filter.toLowerCase())
   );
 
-  // Группировка по категориям
   const grouped = filteredTranslations.reduce((acc, t) => {
     const category = t.key.split(".")[0];
     if (!acc[category]) acc[category] = [];
@@ -99,7 +98,6 @@ export default function TranslationsPage({ contentLang, systemLang }: Translatio
     return acc;
   }, {} as Record<string, Translation[]>);
 
-  // Правильная сортировка категорий
   const categoryOrder = ["header", "hero", "about", "services", "values", "contact", "footer"];
   const sortedCategories = Object.keys(grouped).sort((a, b) => {
     const indexA = categoryOrder.indexOf(a);

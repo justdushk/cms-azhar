@@ -17,7 +17,9 @@ interface SidebarProps {
   systemLang: "ru" | "kz";
 }
 
-export default function Sidebar({ currentPage, setCurrentPage, systemLang }: SidebarProps) {
+import { memo } from "react";
+
+function Sidebar({ currentPage, setCurrentPage, systemLang }: SidebarProps) {
   const t = translations[systemLang];
 
   return (
@@ -42,3 +44,5 @@ export default function Sidebar({ currentPage, setCurrentPage, systemLang }: Sid
     </aside>
   );
 }
+
+export default memo(Sidebar);
