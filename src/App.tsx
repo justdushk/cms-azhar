@@ -1,8 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
-import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
-import Dashboard from "./components/Dashboard";
 import TranslationsPage from "./components/TranslationsPage";
 import LoginPage from "./components/LoginPage";
 import "./App.css";
@@ -13,21 +11,33 @@ type ContentLang = "ru" | "kz";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState("dashboard");
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [systemLang, setSystemLang] = useState<SystemLang>("ru");
   const [contentLang, setContentLang] = useState<ContentLang>("ru");
-  const setPage = useCallback((page: string) => {
-  setCurrentPage(page);
-  }, []);
+  const [totalKeys, setTotalKeys] = useState(0);
 
   useEffect(() => {
     checkAuth();
   }, []);
 
+  useEffect(() => {
+    if (isAuthenticated && !isDataLoaded) {
+      loadInitialData();
+    }
+  }, [isAuthenticated]);
+
   const checkAuth = async () => {
     const { data: { session } } = await supabase.auth.getSession();
     setIsAuthenticated(!!session);
     setIsLoading(false);
+  };
+
+  const loadInitialData = async () => {
+    const { data } = await supabase.from("translations").select("*");
+    setTotalKeys(data?.length || 0);
+    setTimeout(() => {
+      setIsDataLoaded(true);
+    }, 100);
   };
 
   const handleLogin = () => {
@@ -37,33 +47,12 @@ function App() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setIsAuthenticated(false);
-    setCurrentPage("dashboard");
+    setIsDataLoaded(false);
+    setTotalKeys(0);
   };
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case "dashboard":
-        return <Dashboard systemLang={systemLang} />;
-      case "translations":
-        return <TranslationsPage contentLang={contentLang} systemLang={systemLang} />;
-      default:
-        return <Dashboard systemLang={systemLang} />;
-    }
-  };
-
-  if (isLoading) {
-    return (
-      <div style={{ 
-        display: "flex", 
-        alignItems: "center", 
-        justifyContent: "center", 
-        height: "100vh",
-        fontSize: "18px",
-        color: "#64748b"
-      }}>
-        Загрузка...
-      </div>
-    );
+  if (isLoading || (isAuthenticated && !isDataLoaded)) {
+    return <div style={{ background: "white", width: "100vw", height: "100vh" }} />;
   }
 
   if (!isAuthenticated) {
@@ -71,25 +60,24 @@ function App() {
   }
   
   return (
-  <div className="admin-container app-init-ready">
-    <Sidebar 
-      currentPage={currentPage} 
-      setCurrentPage={setPage}
-      systemLang={systemLang}
-    />
-    <div className="main-content">
-      <Header 
-        systemLang={systemLang} 
-        setSystemLang={setSystemLang}
-        contentLang={contentLang}
-        setContentLang={setContentLang}
-        onLogout={handleLogout}
-      />
-      {renderPage()}
+    <div className="admin-container app-init-ready">
+      <div className="main-content-full">
+        <Header 
+          systemLang={systemLang} 
+          setSystemLang={setSystemLang}
+          contentLang={contentLang}
+          setContentLang={setContentLang}
+          onLogout={handleLogout}
+          totalKeys={totalKeys}
+        />
+        <TranslationsPage 
+          contentLang={contentLang} 
+          systemLang={systemLang} 
+          onDataLoad={setTotalKeys} 
+        />
+      </div>
     </div>
-  </div>
-);
-
+  );
 }
 
 export default App;

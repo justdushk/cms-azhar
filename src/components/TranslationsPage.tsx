@@ -5,17 +5,17 @@ const translations = {
   ru: {
     translations: "Переводы",
     search: "Поиск по ключу...",
-    edit: "✏️ Редактировать",
-    save: "✓ Сохранить",
-    cancel: "✕ Отмена",
+    edit: " Редактировать",
+    save: " Сохранить",
+    cancel: " Отмена",
     empty: "(пусто)",
   },
   kz: {
     translations: "Аудармалар",
     search: "Кілт бойынша іздеу...",
-    edit: "✏️ Өңдеу",
-    save: "✓ Сақтау",
-    cancel: "✕ Болдырмау",
+    edit: " Өңдеу",
+    save: " Сақтау",
+    cancel: " Болдырмау",
     empty: "(бос)",
   },
 };
@@ -30,9 +30,10 @@ interface Translation {
 interface TranslationsPageProps {
   contentLang: "ru" | "kz";
   systemLang: "ru" | "kz";
+  onDataLoad?: (count: number) => void;
 }
 
-export default function TranslationsPage({ contentLang, systemLang }: TranslationsPageProps) {
+export default function TranslationsPage({ contentLang, systemLang, onDataLoad }: TranslationsPageProps) {
   const t = translations[systemLang];
   const [translationsList, setTranslationsList] = useState<Translation[]>([]);
   const [filter, setFilter] = useState("");
@@ -51,6 +52,9 @@ export default function TranslationsPage({ contentLang, systemLang }: Translatio
 
     if (!error && data) {
       setTranslationsList(data);
+      if (onDataLoad) {
+        onDataLoad(data.length);
+      }
     }
   };
 

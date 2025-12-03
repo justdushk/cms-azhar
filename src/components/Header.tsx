@@ -4,12 +4,14 @@ const translations = {
     systemLang: "Язык системы",
     contentLang: "Язык контента",
     logout: "Выход",
+    totalKeys: "Всего ключей",
   },
   kz: {
     adminPanel: "Басқару панелі",
     systemLang: "Жүйе тілі",
     contentLang: "Мазмұн тілі",
     logout: "Шығу",
+    totalKeys: "Барлығы кілттер",
   },
 };
 
@@ -19,6 +21,7 @@ interface HeaderProps {
   contentLang: "ru" | "kz";
   setContentLang: (lang: "ru" | "kz") => void;
   onLogout: () => void;
+  totalKeys: number;
 }
 
 export default function Header({ 
@@ -26,51 +29,66 @@ export default function Header({
   setSystemLang, 
   contentLang, 
   setContentLang,
-  onLogout 
+  onLogout,
+  totalKeys
 }: HeaderProps) {
   const t = translations[systemLang];
 
   return (
     <header className="admin-header">
-      <h1>{t.adminPanel}</h1>
-      <div className="header-actions">
-        <div className="lang-switcher-container">
-          <span className="lang-label">{t.systemLang}</span>
-          <div className="lang-switcher">
-            <button
-              className={systemLang === "ru" ? "lang-btn active" : "lang-btn"}
-              onClick={() => setSystemLang("ru")}
-            >
-              RUS
-            </button>
-            <button
-              className={systemLang === "kz" ? "lang-btn active" : "lang-btn"}
-              onClick={() => setSystemLang("kz")}
-            >
-              QAZ
-            </button>
+      <div className="header-container">
+        <div className="header-top">
+          <div className="header-title-section">
+            <h1>{t.adminPanel}</h1>
+            <div className="header-stat-badge">
+              <span className="stat-icon">📄</span>
+              <div className="stat-info">
+                <span className="stat-label-small">{t.totalKeys}</span>
+                <span className="stat-value-small">{totalKeys}</span>
+              </div>
+            </div>
           </div>
-        </div>
-        
-        <div className="content-lang-switcher-container">
-          <span className="lang-label">{t.contentLang}</span>
-          <div className="content-lang-switcher">
-            <button
-              className={contentLang === "ru" ? "content-lang-btn active" : "content-lang-btn"}
-              onClick={() => setContentLang("ru")}
-            >
-              RUS
-            </button>
-            <button
-              className={contentLang === "kz" ? "content-lang-btn active" : "content-lang-btn"}
-              onClick={() => setContentLang("kz")}
-            >
-              QAZ
-            </button>
-          </div>
-        </div>
+          
+          <div className="header-controls">
+            <div className="lang-switcher-container">
+              <span className="lang-label">{t.systemLang}</span>
+              <div className="lang-switcher">
+                <button
+                  className={systemLang === "ru" ? "lang-btn active" : "lang-btn"}
+                  onClick={() => setSystemLang("ru")}
+                >
+                  RUS
+                </button>
+                <button
+                  className={systemLang === "kz" ? "lang-btn active" : "lang-btn"}
+                  onClick={() => setSystemLang("kz")}
+                >
+                  QAZ
+                </button>
+              </div>
+            </div>
+            
+            <div className="content-lang-switcher-container">
+              <span className="lang-label">{t.contentLang}</span>
+              <div className="content-lang-switcher">
+                <button
+                  className={contentLang === "ru" ? "content-lang-btn active" : "content-lang-btn"}
+                  onClick={() => setContentLang("ru")}
+                >
+                  RUS
+                </button>
+                <button
+                  className={contentLang === "kz" ? "content-lang-btn active" : "content-lang-btn"}
+                  onClick={() => setContentLang("kz")}
+                >
+                  QAZ
+                </button>
+              </div>
+            </div>
 
-        <button className="logout-btn" onClick={onLogout}>{t.logout}</button>
+            <button className="logout-btn" onClick={onLogout}>{t.logout}</button>
+          </div>
+        </div>
       </div>
     </header>
   );
