@@ -838,50 +838,129 @@ body {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1366px) {
   .sidebar {
-    width: 200px;
+    width: 240px;
   }
   
   .main-content-full,
   .main-content {
-    margin-left: 200px;
-    width: calc(100% - 200px);
+    margin-left: 240px;
+    width: calc(100% - 240px);
     min-width: auto;
   }
   
   .translations-page,
   .menu-manager {
-    padding: 20px;
+    padding: 30px 24px;
   }
   
   .translation-item {
-    grid-template-columns: 160px 1fr;
-    gap: 10px;
-    padding: 12px;
+    grid-template-columns: 220px 1fr;
+    gap: 16px;
   }
   
   .menu-item-info {
-    grid-template-columns: 160px 1fr 45px;
-    gap: 10px;
+    grid-template-columns: 220px 1fr 55px;
   }
   
   .header-container {
-    padding: 16px 24px;
+    padding: 20px 24px;
+  }
+  
+  .header-stat-badge {
+    padding: 8px 16px;
+    gap: 10px;
+  }
+  
+  .stat-value-small {
+    font-size: 20px;
   }
   
   .header-controls {
     gap: 12px;
   }
   
+  .category-section {
+    padding: 24px;
+  }
+  
+  .page-header h2 {
+    font-size: 26px;
+  }
+  
+  .search-input {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .sidebar {
+    width: 220px;
+  }
+  
+  .sidebar-header h2 {
+    font-size: 20px;
+    margin-bottom: 32px;
+  }
+  
+  .nav-item {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  
+  .main-content-full,
+  .main-content {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+  }
+  
+  .translations-page,
+  .menu-manager {
+    padding: 24px 20px;
+  }
+  
+  .translation-item {
+    grid-template-columns: 200px 1fr;
+    gap: 14px;
+    padding: 14px;
+  }
+  
+  .translation-key,
+  .menu-key {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  
+  .menu-item-info {
+    grid-template-columns: 200px 1fr 50px;
+    gap: 12px;
+  }
+  
+  .header-container {
+    padding: 18px 20px;
+  }
+  
+  .header-stat-badge {
+    padding: 8px 14px;
+  }
+  
+  .stat-label-small {
+    font-size: 9px;
+  }
+  
+  .stat-value-small {
+    font-size: 18px;
+  }
+  
   .lang-btn,
   .content-lang-btn {
-    padding: 6px 12px;
+    padding: 7px 14px;
     font-size: 12px;
   }
   
   .logout-btn {
-    padding: 10px 20px;
+    padding: 10px 18px;
     font-size: 13px;
   }
   
@@ -894,23 +973,228 @@ body {
   }
   
   .search-input {
-    max-width: 240px;
+    max-width: 260px;
     padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .category-section {
+    padding: 20px;
   }
   
   .btn-edit,
+  .btn-add-sub {
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+  
+  .btn-save,
+  .btn-cancel {
+    padding: 9px 16px;
+    font-size: 13px;
+  }
+  
+  .btn-add {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  
+  .form-input {
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+  
+  .edit-textarea {
+    padding: 10px;
+    font-size: 13px;
+    min-height: 70px;
+  }
+  
+  .menu-item-card {
+    padding: 20px;
+  }
+  
+  .menu-item-form {
+    padding: 14px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+  
+  .sidebar-header h2 {
+    font-size: 18px;
+    margin-bottom: 28px;
+  }
+  
+  .nav-item {
+    padding: 11px 12px;
+    font-size: 13px;
+  }
+  
+  .main-content-full,
+  .main-content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+  }
+  
+  .translations-page,
+  .menu-manager {
+    padding: 20px 16px;
+  }
+  
+  .translation-item {
+    grid-template-columns: 180px 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .translation-key,
+  .menu-key {
+    font-size: 11px;
+    padding: 4px 9px;
+  }
+  
+  .menu-item-info {
+    grid-template-columns: 180px 1fr 45px;
+    gap: 10px;
+  }
+  
+  .header-container {
+    padding: 16px 18px;
+  }
+  
+  .header-top {
+    gap: 24px;
+  }
+  
+  .header-stat-badge {
+    padding: 7px 12px;
+    gap: 8px;
+  }
+  
+  .header-stat-badge .stat-icon {
+    font-size: 24px;
+  }
+  
+  .stat-label-small {
+    font-size: 8px;
+  }
+  
+  .stat-value-small {
+    font-size: 16px;
+  }
+  
+  .header-controls {
+    gap: 10px;
+  }
+  
+  .lang-label {
+    font-size: 10px;
+  }
+  
+  .lang-btn,
+  .content-lang-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .logout-btn {
+    padding: 9px 16px;
+    font-size: 12px;
+  }
+  
+  .page-header {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .page-header h2 {
+    font-size: 22px;
+  }
+  
+  .category-title {
+    font-size: 17px;
+    padding-bottom: 10px;
+  }
+  
+  .search-input {
+    max-width: 220px;
+    padding: 9px 14px;
+    font-size: 12px;
+  }
+  
+  .category-section {
+    padding: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .translation-value span {
+    font-size: 14px;
+  }
+  
+  .btn-edit,
+  .btn-add-sub {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
   .btn-save,
   .btn-cancel {
     padding: 8px 14px;
     font-size: 12px;
   }
   
+  .btn-add {
+    padding: 9px 18px;
+    font-size: 12px;
+  }
+  
+  .btn-icon {
+    padding: 7px 10px;
+    font-size: 14px;
+  }
+  
   .form-input {
-    padding: 8px 12px;
-    font-size: 13px;
+    padding: 8px 11px;
+    font-size: 12px;
+  }
+  
+  .edit-textarea {
+    padding: 9px;
+    font-size: 12px;
+    min-height: 65px;
+  }
+  
+  .menu-item-card {
+    padding: 18px;
   }
   
   .menu-item-form {
-    padding: 14px;
+    padding: 12px;
+    gap: 9px;
+  }
+  
+  .form-row-top,
+  .form-row-bottom {
+    gap: 10px;
+  }
+  
+  .sub-items {
+    margin-top: 14px;
+    padding-top: 14px;
+  }
+  
+  .sub-items h4 {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  
+  .sub-item {
+    padding: 10px;
+    margin-bottom: 7px;
   }
 }
