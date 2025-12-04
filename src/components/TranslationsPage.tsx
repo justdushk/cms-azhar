@@ -5,7 +5,7 @@ const translations = {
   ru: {
     translations: "Переводы",
     search: "Поиск по ключу...",
-    edit: "✏️ Редактировать",
+    edit: "Редактировать",
     save: "✓ Сохранить",
     cancel: "✕ Отмена",
     empty: "(пусто)",
@@ -13,7 +13,7 @@ const translations = {
   kz: {
     translations: "Аудармалар",
     search: "Кілт бойынша іздеу...",
-    edit: "✏️ Өңдеу",
+    edit: "Өңдеу",
     save: "✓ Сақтау",
     cancel: "✕ Болдырмау",
     empty: "(бос)",
@@ -111,7 +111,6 @@ export default function TranslationsPage({ contentLang, systemLang, onDataLoad }
 
   return (
     <div className="translations-page">
-      {/* Невидимый прочерк для фиксации ширины */}
       <div className="width-placeholder" aria-hidden="true"></div>
       
       <div className="page-header">
@@ -127,7 +126,6 @@ export default function TranslationsPage({ contentLang, systemLang, onDataLoad }
 
       {sortedCategories.map((category) => (
         <div key={category} className="category-section">
-          {/* Прочерк в каждой секции */}
           <div className="width-placeholder" aria-hidden="true"></div>
           
           <h3 className="category-title">{category}</h3>
