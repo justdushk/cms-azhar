@@ -70,11 +70,13 @@ function App() {
           onLogout={handleLogout}
           totalKeys={totalKeys}
         />
+        <main>
         <TranslationsPage 
           contentLang={contentLang} 
           systemLang={systemLang} 
           onDataLoad={setTotalKeys} 
         />
+        </main>
       </div>
     </div>
   );
