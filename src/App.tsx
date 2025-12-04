@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
+import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TranslationsPage from "./components/TranslationsPage";
+import MenuManager from "./components/MenuManager";
 import LoginPage from "./components/LoginPage";
 import "./App.css";
 
@@ -12,6 +14,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [currentPage, setCurrentPage] = useState("translations");
   const [systemLang, setSystemLang] = useState<SystemLang>("ru");
   const [contentLang, setContentLang] = useState<ContentLang>("ru");
   const [totalKeys, setTotalKeys] = useState(0);
@@ -51,6 +54,17 @@ function App() {
     setTotalKeys(0);
   };
 
+  const renderPage = () => {
+    switch (currentPage) {
+      case "translations":
+        return <TranslationsPage contentLang={contentLang} systemLang={systemLang} onDataLoad={setTotalKeys} />;
+      case "menu":
+        return <MenuManager systemLang={systemLang} contentLang={contentLang} />;
+      default:
+        return <TranslationsPage contentLang={contentLang} systemLang={systemLang} onDataLoad={setTotalKeys} />;
+    }
+  };
+
   if (isLoading || (isAuthenticated && !isDataLoaded)) {
     return <div style={{ background: "white", width: "100vw", height: "100vh" }} />;
   }
@@ -61,6 +75,11 @@ function App() {
   
   return (
     <div className="admin-container app-init-ready">
+      <Sidebar 
+        currentPage={currentPage} 
+        setCurrentPage={setCurrentPage}
+        systemLang={systemLang}
+      />
       <div className="main-content-full">
         <Header 
           systemLang={systemLang} 
@@ -70,13 +89,7 @@ function App() {
           onLogout={handleLogout}
           totalKeys={totalKeys}
         />
-        <main>
-        <TranslationsPage 
-          contentLang={contentLang} 
-          systemLang={systemLang} 
-          onDataLoad={setTotalKeys} 
-        />
-        </main>
+        {renderPage()}
       </div>
     </div>
   );

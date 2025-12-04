@@ -39,7 +39,6 @@ export default function Header({
       <div className="header-container">
         <div className="header-top">
           <div className="header-title-section">
-            <h1>{t.adminPanel}</h1>
             <div className="header-stat-badge">
               <span className="stat-icon">📄</span>
               <div className="stat-info">

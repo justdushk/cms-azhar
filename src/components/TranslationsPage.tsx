@@ -5,17 +5,17 @@ const translations = {
   ru: {
     translations: "Переводы",
     search: "Поиск по ключу...",
-    edit: " Редактировать",
-    save: " Сохранить",
-    cancel: " Отмена",
+    edit: "✏️ Редактировать",
+    save: "✓ Сохранить",
+    cancel: "✕ Отмена",
     empty: "(пусто)",
   },
   kz: {
     translations: "Аудармалар",
     search: "Кілт бойынша іздеу...",
-    edit: " Өңдеу",
-    save: " Сақтау",
-    cancel: " Болдырмау",
+    edit: "✏️ Өңдеу",
+    save: "✓ Сақтау",
+    cancel: "✕ Болдырмау",
     empty: "(бос)",
   },
 };
@@ -66,8 +66,6 @@ export default function TranslationsPage({ contentLang, systemLang, onDataLoad }
   const saveEdit = async (id: string) => {
     const column = contentLang === "ru" ? "value_ru" : "value_kz";
     
-    console.log("Сохраняем:", { id, column, value: editValue });
-    
     const { error } = await supabase
       .from("translations")
       .update({ [column]: editValue })
@@ -80,7 +78,6 @@ export default function TranslationsPage({ contentLang, systemLang, onDataLoad }
       console.log("✅ Сохранено успешно");
       setEditingId(null);
       
-      // Обновляем локальный стейт СРАЗУ
       setTranslationsList(prev => 
         prev.map(item => 
           item.id === id 
@@ -114,6 +111,9 @@ export default function TranslationsPage({ contentLang, systemLang, onDataLoad }
 
   return (
     <div className="translations-page">
+      {/* Невидимый прочерк для фиксации ширины */}
+      <div className="width-placeholder" aria-hidden="true"></div>
+      
       <div className="page-header">
         <h2>{t.translations} ({contentLang.toUpperCase()})</h2>
         <input
@@ -127,6 +127,9 @@ export default function TranslationsPage({ contentLang, systemLang, onDataLoad }
 
       {sortedCategories.map((category) => (
         <div key={category} className="category-section">
+          {/* Прочерк в каждой секции */}
+          <div className="width-placeholder" aria-hidden="true"></div>
+          
           <h3 className="category-title">{category}</h3>
           <div className="translations-list">
             {grouped[category].map((item) => {
