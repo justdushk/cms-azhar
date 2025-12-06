@@ -1,13 +1,15 @@
 const translations = {
   ru: {
-    adminPanel: "Админ Панель",
-    translations: "🌐 Переводы",
-    menu: "📝 Управление меню",
+    adminPanel: "Админ-панель",
+    translations: "Переводы",
+    menu: "Меню",
+    sections: "Секции",
   },
   kz: {
-    adminPanel: "Админ Панелі",
-    translations: "🌐 Аудармалар",
-    menu: "📝 Мәзір басқару",
+    adminPanel: "Админ-панель",
+    translations: "Аудармалар",
+    menu: "Мәзір",
+    sections: "Секциялар",
   },
 };
 
@@ -17,9 +19,7 @@ interface SidebarProps {
   systemLang: "ru" | "kz";
 }
 
-import { memo } from "react";
-
-function Sidebar({ currentPage, setCurrentPage, systemLang }: SidebarProps) {
+export default function Sidebar({ currentPage, setCurrentPage, systemLang }: SidebarProps) {
   const t = translations[systemLang];
 
   return (
@@ -29,20 +29,24 @@ function Sidebar({ currentPage, setCurrentPage, systemLang }: SidebarProps) {
       </div>
       <nav className="sidebar-nav">
         <button
-          className={currentPage === "translations" ? "nav-item active" : "nav-item"}
+          className={`nav-item ${currentPage === "translations" ? "active" : ""}`}
           onClick={() => setCurrentPage("translations")}
         >
-          {t.translations}
+          🌐 {t.translations}
         </button>
         <button
-          className={currentPage === "menu" ? "nav-item active" : "nav-item"}
+          className={`nav-item ${currentPage === "menu" ? "active" : ""}`}
           onClick={() => setCurrentPage("menu")}
         >
-          {t.menu}
+          📝 {t.menu}
+        </button>
+        <button
+          className={`nav-item ${currentPage === "sections" ? "active" : ""}`}
+          onClick={() => setCurrentPage("sections")}
+        >
+          📄 {t.sections}
         </button>
       </nav>
     </aside>
   );
 }
-
-export default memo(Sidebar);

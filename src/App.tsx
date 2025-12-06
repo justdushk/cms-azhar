@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import TranslationsPage from "./components/TranslationsPage";
 import MenuManager from "./components/MenuManager";
 import LoginPage from "./components/LoginPage";
+import SectionsManager from "./components/SectionsManager";
 import "./App.css";
 
 type SystemLang = "ru" | "kz";
@@ -60,6 +61,8 @@ function App() {
         return <TranslationsPage contentLang={contentLang} systemLang={systemLang} onDataLoad={setTotalKeys} />;
       case "menu":
         return <MenuManager systemLang={systemLang} contentLang={contentLang} />;
+      case "sections":
+        return <SectionsManager systemLang={systemLang} contentLang={contentLang} />;
       default:
         return <TranslationsPage contentLang={contentLang} systemLang={systemLang} onDataLoad={setTotalKeys} />;
     }

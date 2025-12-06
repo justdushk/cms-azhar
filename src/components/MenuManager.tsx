@@ -89,7 +89,6 @@ export default function MenuManager({ systemLang }: MenuManagerProps) {
   };
 
   const startEdit = async (item: MenuItem) => {
-    // Загружаем текущий перевод
     const { data } = await supabase
       .from("translations")
       .select("value_ru, value_kz")
@@ -108,7 +107,6 @@ export default function MenuManager({ systemLang }: MenuManagerProps) {
 
   const saveEdit = async (id: string) => {
     try {
-      // Обновляем menu_items
       const { error: menuError } = await supabase
         .from("menu_items")
         .update({ 
@@ -124,7 +122,6 @@ export default function MenuManager({ systemLang }: MenuManagerProps) {
         return;
       }
 
-      // Обновляем translations
       const { error: transError } = await supabase
         .from("translations")
         .update({
@@ -151,7 +148,6 @@ export default function MenuManager({ systemLang }: MenuManagerProps) {
     if (!confirm("Удалить этот пункт меню и его перевод?")) return;
 
     try {
-      // Удаляем из menu_items
       const { error: menuError } = await supabase
         .from("menu_items")
         .delete()
@@ -163,7 +159,6 @@ export default function MenuManager({ systemLang }: MenuManagerProps) {
         return;
       }
 
-      // Удаляем из translations
       await supabase
         .from("translations")
         .delete()
@@ -196,7 +191,6 @@ export default function MenuManager({ systemLang }: MenuManagerProps) {
     }
 
     try {
-      // Проверяем существование ключа
       const { data: existingKey } = await supabase
         .from("translations")
         .select("key")
@@ -208,7 +202,6 @@ export default function MenuManager({ systemLang }: MenuManagerProps) {
         return;
       }
 
-      // Создаем перевод
       const { error: transError } = await supabase
         .from("translations")
         .insert({
@@ -223,7 +216,6 @@ export default function MenuManager({ systemLang }: MenuManagerProps) {
         return;
       }
 
-      // Создаем пункт меню
       const { error: menuError } = await supabase
         .from("menu_items")
         .insert({
