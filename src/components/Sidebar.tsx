@@ -4,12 +4,14 @@ const translations = {
     translations: "Переводы",
     menu: "Меню",
     sections: "Секции",
+    pages: "Страницы",
   },
   kz: {
     adminPanel: "Админ-панель",
     translations: "Аудармалар",
     menu: "Мәзір",
     sections: "Секциялар",
+    pages: "Беттер",
   },
 };
 
@@ -45,6 +47,12 @@ export default function Sidebar({ currentPage, setCurrentPage, systemLang }: Sid
           onClick={() => setCurrentPage("sections")}
         >
           📄 {t.sections}
+        </button>
+        <button
+          className={`nav-item ${currentPage === "pages" ? "active" : ""}`}
+          onClick={() => setCurrentPage("pages")}
+        >
+          📑 {t.pages}
         </button>
       </nav>
     </aside>

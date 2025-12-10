@@ -84,7 +84,6 @@ export default function Header({
                 </button>
               </div>
             </div>
-
             <button className="logout-btn" onClick={onLogout}>{t.logout}</button>
           </div>
         </div>
